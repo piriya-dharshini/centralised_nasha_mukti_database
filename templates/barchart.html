@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Bar Chart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+    <style>
+      body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            column-gap: 1%;
+            min-height: 100vh;
+            background-image: url("{{ url_for('static', filename='drug.gif') }}");
+            background-size: cover;
+            backdrop-filter: blur(5px);
+        }
+        header {
+            background-color: rgba(0, 128, 0, 0.5);
+            color: #fff;
+            text-align: center;
+            padding: 2%;
+        }
+
+        footer {
+            background-color: rgba(0, 128, 0, 0.5);
+            color: #fff;
+            text-align: center;
+            padding: 2%;
+            margin-top: auto; /* Pushes the footer to the bottom */
+        }
+        h1, h2 {
+            color:black;
+            text-align: center;
+        }
+
+        
+      .chart{
+        width: 600px;
+        height: 300px;
+        padding-left:33%;
+        padding-bottom:3%;
+      }
+
+      .numbers{
+        color: black;
+        margin: 0;
+        padding: 0;
+        width: 50px;
+        height: 300px; /* Adjusted height to match the chart */
+        display: inline-block;
+        float: left;
+      }
+
+      .numbers li{
+        list-style: none;
+          height: 60px; /* Adjusted height of each label */
+          text-align:center;
+          line-height:0.3;
+      }
+
+      .numbers span{
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+
+      .bars{
+        color: black;
+        font-size: 12px;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.256);
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+        width: 300px;
+        height: 300px;
+        box-shadow: 0 0 10px 0 #555;
+        border-radius: 5px;
+
+      }
+
+      .bars li{
+        display: table-cell;
+        width: 100px;
+        height: 300px;
+        position: relative;
+      }
+
+      .bars span {
+        width: 100%;
+        position: absolute;
+        bottom: -30px;
+        text-align: center;
+        font-size: 12px; /* Add this line to adjust font size */
+      }
+
+
+      .bars .bar {
+        display: block;
+        background: rgb(47, 0, 255);
+        width: 50px;
+        margin-left:25%;
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        box-shadow: 0 0 10px 0 rgba(23, 192, 235, 0.5);
+        transition: 0.5s;
+        transition-property: background, box-shadow;
+      }
+
+
+      .bars .bar:hover{
+        background: #9a55ef;
+        box-shadow: 0 0 10px 0 rgba(85, 239, 196, 0.5);
+        cursor: pointer;
+      }
+
+      .bars .bar:before{
+        color: #fff;
+        position: relative;
+        bottom: 20px;
+      }
+
+    </style>
+</head>
+<body>
+  <header>
+    <img align="left" src="{{ url_for('static', filename='logo.png') }}" class="logo">
+</header>
+<!-- Add a title (placed above the chart) -->
+<h1>Statistical Analysis Chart</h1>
+
+<!--chart container start-->
+<div class="chart-container">
+    <!--chart-->
+    <div class="chart">
+        <ul class="numbers">
+            <li><span>10</span></li>
+            <li><span>8</span></li>
+            <li><span>6</span></li>
+            <li><span>4</span></li>
+            <li><span>2</span></li>
+            <li><span>0</span></li>
+        </ul>
+        <ul class="bars">
+            {% for i in range(3) %}
+                <li><div class="bar" data-yvalues="{{ yvalues[i] }}"></div><span>{{ xvalues[i] }}</span></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!--chart end-->
+</div>
+<!--chart container end-->
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('.bars li .bar').each(function(key, bar) {
+        var yvalues = $(this).data('yvalues') * 25; // Adjust multiplier as needed
+        $(this).animate({
+            'height': yvalues 
+        },500); // Adjust duration (in milliseconds) as needed
+    });
+});
+</script>
+<footer>
+</footer>
+</body>
+</html>

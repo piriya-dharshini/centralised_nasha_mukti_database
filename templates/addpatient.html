@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Patient Page</title>
+    <style>
+        .flash-messages {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            text-align: center;
+            z-index: 9999;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-image: url("{{ url_for('static', filename='drug.gif') }}");
+            background-size: cover;
+            backdrop-filter: blur(5px);
+        }
+        header, footer {
+            background-color: rgba(0, 128, 0, 0.5);
+            color: #fff;
+            text-align: center;
+            padding: 2%;
+        }
+        .addpatient-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .addpatient-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 1%;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 3%;
+        }
+        input {
+            width: 100%;
+            padding: 2%;
+            box-sizing: border-box;
+        }
+        a {
+            color: #333;
+            text-decoration: none;
+            padding-left: 45%;
+        }
+        button {
+            background-color: rgba(0, 128, 0, 0.5);
+            width: 100%;
+            padding: 5%;
+            border-radius: 50px;
+            border: none;
+        }
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img align="left" src="{{ url_for('static', filename='logo.png') }}" class="logo">
+    </header>
+
+    <div class="addpatient-container">
+        <div class="addpatient-box">
+            <h2>Add Patient</h2>
+            <form action="{{ url_for('addpatient') }}" method="POST">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" required>
+                </div>
+                <div class="form-group">
+                    <label for="sex">Sex:</label>
+                    <input type="text" id="sex" name="sex" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactno">Contact Number:</label>
+                    <input type="tel" id="contactno" name="contactno" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                  <label for="adharno">Aadhar Number:</label>
+                  <input type="text" id="adharno" name="adharno" required>
+              </div>
+              <div>
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+    </footer>
+</body>
+</html>

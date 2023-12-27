@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar Graph Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          column-gap: 1%;
+          min-height: 100vh;
+          background-image: url("{{ url_for('static', filename='drug.gif') }}");
+          background-size: cover;
+          backdrop-filter: blur(5px);
+      }
+
+      header {
+          background-color: rgba(0, 128, 0, 0.5);
+          color: #fff;
+          text-align: center;
+          padding: 2%;
+      }
+
+      footer {
+          background-color: rgba(0, 128, 0, 0.5);
+          color: #fff;
+          text-align: center;
+          padding: 2%;
+          margin-top: auto; /* Pushes the footer to the bottom */
+      }
+
+      h1, h2 {
+          text-align: start;
+      }
+
+      ul {
+          list-style-type:disc;
+          padding: 0;
+      }
+
+      li {
+          margin:10px ;
+      }
+      .container {
+          background-color: rgba(255, 255, 255, 0.8);
+          padding: 7%;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          text-align: center;
+          margin: 20px auto;
+          max-width: fit-content;
+      }
+
+      .container h2 {
+          margin-bottom: 20px;
+      }
+
+      .container button {
+          margin: 10px;
+          padding: 10px 20px;
+          font-size: 16px;
+          border-radius: 8px;
+          border: none;
+          cursor: pointer;
+      }
+  </style>
+</head>
+<body>
+    <canvas id="barChart" width="800" height="400"></canvas>
+  </body>
+    <script>
+        new Chart("myChart", {
+            type: "bar",
+                data:{
+                labels:xvalues,
+                datasets:[{
+                 
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1,
+                data : yvalues
+            }]
+          },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Statistical analysis"
+    }
+  }
+});
+    </script>
+
+</html>
